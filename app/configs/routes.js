@@ -8,7 +8,7 @@
 		self.pop = pop;
 		self.pops = pops;
 		self.stack = stack;
-		self.defaultState = 'login';
+		self.defaultState = 'map';
 		self.states = {
 			'login': {
 				templateUrl: 'templates/login.html'

@@ -1,4 +1,4 @@
-<ons-navigator ng-controller="MapController">
+<ons-navigator ng-controller="MapController as vm">
    <ons-page>
         <ons-toolbar modifier="material">
           <div class="left">
@@ -7,6 +7,11 @@
             </ons-toolbar-button>
           </div>
           <div class="center">Todos</div>
+          <div class="right">
+            <ons-toolbar-button ng-click="vm.refresh()" modifier="material">
+              <ons-icon icon="md-refresh"></ons-icon>
+            </ons-toolbar-button>
+          </div>
         </ons-toolbar>
 
         <div id="map_canvas"></div>
