@@ -233,6 +233,35 @@ var NG_MODULE = 'MyApp'
 }();
 !function () {
 
+	function MapController($scope, $timeout) {
+		$scope.map;
+        $scope.markers = [];
+        $scope.markerId = 1;
+
+        //Map initialization  
+        $timeout(function(){
+
+            var latlng = new google.maps.LatLng(45.5017, -73.5673);
+            var myOptions = {
+                zoom: 15,
+                center: latlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            $scope.map = new google.maps.Map(document.getElementById("map_canvas"), myOptions); 
+            $scope.overlay = new google.maps.OverlayView();
+            $scope.overlay.draw = function() {}; // empty function required
+            $scope.overlay.setMap($scope.map);
+            $scope.element = document.getElementById('map_canvas');
+
+        },100);
+
+	}
+	MapController.$inject = ['$scope', '$timeout']
+	angular.module(NG_MODULE).controller('MapController', MapController);
+	
+}();
+!function () {
+
 	function TodoController($scope, $timeout) {
 		this.items = [
 		  {
@@ -327,6 +356,7 @@ var NG_MODULE = 'MyApp'
 		self.pop = pop;
 		self.pops = pops;
 		self.stack = stack;
+<<<<<<< e8b8ef3ff92c8f7818766cb6262160b6cf1d9380
 		self.defaultState = 'login';
 		self.states = {
 			'login': {
@@ -334,6 +364,15 @@ var NG_MODULE = 'MyApp'
 			},
 			'categories': {
 				templateUrl: 'templates/categories.html'
+=======
+		self.defaultState = 'map';
+		self.states = {
+			'todo': {
+				templateUrl: 'templates/todo.html'
+			},
+			'map' : {
+				templateUrl: 'templates/map.html'	
+>>>>>>> map
 			}
 		}
 		

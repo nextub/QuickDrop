@@ -15,6 +15,9 @@
 			},
 			'categories': {
 				templateUrl: 'templates/categories.html'
+			},
+			'map' : {
+				templateUrl: 'templates/map.html'	
 			}
 		}
 		
