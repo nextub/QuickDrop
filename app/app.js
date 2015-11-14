@@ -1,4 +1,4 @@
 var NG_MODULE = 'MyApp'
 !function () {
-	angular.module(NG_MODULE, ['onsen']);
+	angular.module(NG_MODULE, ['onsen', 'ionic']);
 }();

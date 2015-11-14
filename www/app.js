@@ -1,6 +1,6 @@
 var NG_MODULE = 'MyApp'
 !function () {
-	angular.module(NG_MODULE, ['onsen']);
+	angular.module(NG_MODULE, ['onsen', 'ionic']);
 }();
 !function () {
 
@@ -256,10 +256,16 @@ var NG_MODULE = 'MyApp'
 }();
 !function () {
 
-	function config () {
-		// basic configurations go here
+	function config ($ionicPlatform) {
+		// var push = new Ionic.Push({
+	 //      "debug": true
+	 //    });
+
+	 //    push.register(function(token) {
+	 //      console.log("Device token:",token.token);
+	 //    });
 	}
-	config.$inject = [];
+	config.$inject = ['$ionicPlatform'];
 	angular.module(NG_MODULE).run(config);
 	
 }();

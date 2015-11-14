@@ -1,29 +1,33 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="MyApp">
 <head>
-    <meta charset="utf-8" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="mobile-web-app-capable" content="yes" />
-    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300italic,300,400italic,500,700,700italic,500italic' rel='stylesheet' type='text/css'>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Roboto%3A400%2C300italic%2C300%2C400italic%2C500%2C700%2C700italic%2C500italic" rel="stylesheet" type="text/css">
     <title>App Seed</title>
 
-    <link rel="stylesheet" href="lib/onsenui/css/onsenui.css" type="text/css" media="all" />
-    <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css" type="text/css" media="all" />
-    <link rel="stylesheet" href="app.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="lib/onsenui/css/onsenui.css" type="text/css" media="all">
+    <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css" type="text/css" media="all">
+    <link rel="stylesheet" href="app.css" type="text/css" media="all">
 
      <!-- cordova script (this will be a 404 during development) -->
-    <script src="cordova.js"></script>
+    <!-- Cordova is bootstrapped by ionic-platform-web-client, uncomment this if you remove ionic-platform-web-client... -->
+<!-- <script src="cordova.js"></script> -->
     
     <script src="lib/onsenui/js/onsenui.js"></script>
     <script src="lib/angular/angular.js"></script>
     <script src="lib/onsenui/js/angular-onsenui.js"></script>
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/ionic-platform-web-client/dist/ionic.io.bundle.min.js"></script>
 
     <script src="app.js"></script>
 </head>
 
 <body ng-controller="MainController as global">
   <ons-splitter var="globals.splitter">
-    <ons-splitter-side var="globals.menu" side="left" collapse="(max-width: {{menuBreakPoint}}px)" width="260px" ng-include="&apos;templates/menu.html&apos;" swipeable>
+    <ons-splitter-side var="globals.menu" side="left" collapse="(max-width: {{menuBreakPoint}}px)" width="260px" ng-include="&apos;templates/menu.html&apos;" swipeable="">
       
     </ons-splitter-side>
     <ons-splitter-content var="globals.splitter_content">
