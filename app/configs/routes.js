@@ -8,10 +8,13 @@
 		self.pop = pop;
 		self.pops = pops;
 		self.stack = stack;
-		self.defaultState = 'todo';
+		self.defaultState = 'login';
 		self.states = {
-			'todo': {
-				templateUrl: 'templates/todo.html'
+			'login': {
+				templateUrl: 'templates/login.html'
+			},
+			'categories': {
+				templateUrl: 'templates/categories.html'
 			}
 		}
 		
@@ -35,6 +38,7 @@
 		}
 
 		function push (stateName, options) {
+			options = options || {};
 			var state = self.states[stateName];
 			if (!state) throw 'State ' + stateName + ' not found!';
 			stack.push($rootScope.routeOptions);

@@ -193,6 +193,37 @@ var NG_MODULE = 'MyApp'
 }();
 !function () {
 
+	function CatController($scope, $timeout) {
+		
+			
+	}
+	CatController.$inject = ['$scope', '$timeout']
+	angular.module(NG_MODULE).controller('CatController', CatController);
+	
+}();
+!function () {
+
+	function LoginController($rootScope, $interval, Router) {
+		$interval.cancel($rootScope.stopper);
+		$rootScope.stopper = $interval(function () {
+			if ($rootScope.carousel.getActiveCarouselItemIndex() == 2) {
+				$rootScope.carousel.first();
+			}else {
+				$rootScope.carousel.next();
+			}
+		}, 3000);
+
+		this.go = function () {
+			Router.push('categories');
+		}
+	}
+
+	LoginController.$inject = ['$rootScope', '$interval', 'Router']
+	angular.module(NG_MODULE).controller('LoginController', LoginController);
+	
+}();
+!function () {
+
 	function MainController ($rootScope) {
 		
 	}
@@ -257,13 +288,20 @@ var NG_MODULE = 'MyApp'
 !function () {
 
 	function config ($ionicPlatform) {
-		// var push = new Ionic.Push({
-	 //      "debug": true
-	 //    });
-
-	 //    push.register(function(token) {
-	 //      console.log("Device token:",token.token);
-	 //    });
+		var push = new Ionic.Push({
+		  "debug": true,
+		  canSetBadge: true, //Can pushes update app icon badges?
+			canPlaySound: true, //Can notifications play a sound?
+			canRunActionsOnWake: true, //Can run actions outside the app,
+			onNotification: function(notification) {
+				// Handle new push notifications here
+				console.log(JSON.stringify(notification));
+				return true;
+			}
+		});
+		push.register(function(token) {
+		  console.log("Device token:",token.token);
+		});
 	}
 	config.$inject = ['$ionicPlatform'];
 	angular.module(NG_MODULE).run(config);
@@ -289,10 +327,13 @@ var NG_MODULE = 'MyApp'
 		self.pop = pop;
 		self.pops = pops;
 		self.stack = stack;
-		self.defaultState = 'todo';
+		self.defaultState = 'login';
 		self.states = {
-			'todo': {
-				templateUrl: 'templates/todo.html'
+			'login': {
+				templateUrl: 'templates/login.html'
+			},
+			'categories': {
+				templateUrl: 'templates/categories.html'
 			}
 		}
 		
@@ -316,6 +357,7 @@ var NG_MODULE = 'MyApp'
 		}
 
 		function push (stateName, options) {
+			options = options || {};
 			var state = self.states[stateName];
 			if (!state) throw 'State ' + stateName + ' not found!';
 			stack.push($rootScope.routeOptions);

@@ -1,0 +1,12 @@
+<ons-page modifier="material" ng-controller="LoginController as vm">
+
+		<div class="login-btns">
+			<div class="cover-label">
+				<button ng-click="vm.go()" class="button button--large"><i class="fa fa-facebook"></i> <span class="underlined">Je m’authentifie</span> et je relaxerai après</button>
+			</div>
+		</div>
+	<ons-carousel overscrollable auto-scroll fullscreen var="carousel">
+		<ons-carousel-item ng-repeat="item in [1,2,3]" class="car_{{item}}"></ons-carousel-item>
+	</ons-carousel>
+	
+</ons-page>
