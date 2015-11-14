@@ -59,6 +59,8 @@
 .icon-vin:before { content: '\e80b'; } /* '' */
 .icon-down-open-big:before { content: '\e80c'; } /* '' */
 
+.icon-cartvide-1:before { content: '\e80d'; } /* '' */
+
 .checkbox--material {
   display: inline !important;
   margin-right: 20px;
@@ -156,4 +158,11 @@ ons-carousel-item {
     margin: 0; 
     padding: 0;   
     z-index: -1
+}
+
+.list--cats .cat-title {
+  line-height: 1px;
+}
+.list--cats label {
+  font-size: 1.4em;
 }

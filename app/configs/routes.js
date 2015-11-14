@@ -8,13 +8,16 @@
 		self.pop = pop;
 		self.pops = pops;
 		self.stack = stack;
-		self.defaultState = 'map';
+		self.defaultState = 'categories';
 		self.states = {
 			'login': {
 				templateUrl: 'templates/login.html'
 			},
 			'categories': {
 				templateUrl: 'templates/categories.html'
+			},
+			'items': {
+				templateUrl: 'templates/items.html'
 			},
 			'map' : {
 				templateUrl: 'templates/map.html'	

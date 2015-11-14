@@ -41,6 +41,167 @@ var NG_MODULE = 'MyApp'
 }();
 !function () {
 
+	function DBService($http, $q) {
+		
+		var self = this;
+
+		var db = [
+			{
+				label: 'Alcool',
+				icon: 'icon-vin',
+				id: 1,
+				items: [
+					{
+						label: 'something1',
+						price: '41.32',
+						img: 'a'
+					},{
+						label: 'something2',
+						price: '22.32',
+						img: 'a'
+					},{
+						label: 'something3',
+						price: '11.32',
+						img: 'a'
+					}
+				]
+			},
+			{
+				label: 'Tabac',
+				icon: 'icon-tabac',
+				id: 2,
+				items: [
+					{
+						label: 'something',
+						price: '41.32',
+						img: 'a'
+					},{
+						label: 'something',
+						price: '41.32',
+						img: 'a'
+					},{
+						label: 'something',
+						price: '41.32',
+						img: 'a'
+					}
+				]
+			},
+			{
+				label: 'Boisson',
+				icon: 'icon-boisson',
+				id: 3,
+				items: [
+					{
+						label: 'something',
+						price: '41.32',
+						img: 'a'
+					},{
+						label: 'something',
+						price: '41.32',
+						img: 'a'
+					},{
+						label: 'something',
+						price: '41.32',
+						img: 'a'
+					}
+				]
+			},
+			{
+				label: 'Confiserie',
+				icon: 'icon-bonbon',
+				id: 4,
+				items: [
+					{
+						label: 'something',
+						price: '41.32',
+						img: 'a'
+					},{
+						label: 'something',
+						price: '41.32',
+						img: 'a'
+					},{
+						label: 'something',
+						price: '41.32',
+						img: 'a'
+					}
+				]
+			},
+			{
+				label: 'Croustilles',
+				icon: 'icon-croustille',
+				id: 5,
+				items: [
+					{
+						label: 'something',
+						price: '41.32',
+						img: 'a'
+					},{
+						label: 'something',
+						price: '41.32',
+						img: 'a'
+					},{
+						label: 'something',
+						price: '41.32',
+						img: 'a'
+					}
+				]
+			},
+			{
+				label: 'Prêt à manger',
+				icon: 'icon-pret',
+				id: 6,
+				items: [
+					{
+						label: 'something',
+						price: '41.32',
+						img: 'a'
+					},{
+						label: 'something',
+						price: '41.32',
+						img: 'a'
+					},{
+						label: 'something',
+						price: '41.32',
+						img: 'a'
+					}
+				]
+			},
+			{
+				label: 'Épicerie',
+				icon: 'icon-dot-3',
+				id: 7,
+				items: [
+					{
+						label: 'something',
+						price: '41.32',
+						img: 'a'
+					},{
+						label: 'something',
+						price: '41.32',
+						img: 'a'
+					},{
+						label: 'something',
+						price: '41.32',
+						img: 'a'
+					}
+				]
+			}];
+
+		self.categories = function () {
+			return db;
+		}
+		self.items = function (id) {
+			return db.filter(function (i) {
+				return i.id == id;
+			})[0].items;
+		}
+	}
+
+	DBService.$inject = ['$http', '$q'];
+	angular.module(NG_MODULE).service('DBService', DBService);
+}();
+!function () {
+
 	angular.module(NG_MODULE)
 
 	.run([
@@ -193,12 +354,33 @@ var NG_MODULE = 'MyApp'
 }();
 !function () {
 
-	function CatController($scope, $timeout) {
-		
-			
+	function CatController(Router, DBService) {
+		this.items = DBService.categories();
+		// console.log(items);
+		this.select = function (id) {
+			Router.push('items', {
+				id: id
+			});
+		}
+
 	}
-	CatController.$inject = ['$scope', '$timeout']
+	CatController.$inject = ['Router', 'DBService']
 	angular.module(NG_MODULE).controller('CatController', CatController);
+	
+}();
+!function () {
+
+	function ItemsController($rootScope, Router, DBService) {
+		this.items = DBService.items($rootScope.routeOptions.id);
+		console.log(this.items);
+		// console.log(items);
+		this.select = function (item) {
+			console.log(item);
+		}
+
+	}
+	ItemsController.$inject = ['$rootScope', 'Router', 'DBService']
+	angular.module(NG_MODULE).controller('ItemsController', ItemsController);
 	
 }();
 !function () {
@@ -354,13 +536,16 @@ var NG_MODULE = 'MyApp'
 		self.pop = pop;
 		self.pops = pops;
 		self.stack = stack;
-		self.defaultState = 'map';
+		self.defaultState = 'categories';
 		self.states = {
 			'login': {
 				templateUrl: 'templates/login.html'
 			},
 			'categories': {
 				templateUrl: 'templates/categories.html'
+			},
+			'items': {
+				templateUrl: 'templates/items.html'
 			},
 			'map' : {
 				templateUrl: 'templates/map.html'	
