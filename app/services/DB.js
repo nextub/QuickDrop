@@ -192,6 +192,7 @@
 			return self.orders;
 		}
 		self.getOrderItems = function (name) {
+			console.log (name);
 			return self.orders.filter(function (i) {
 				return i.name == name;
 			})[0].items;

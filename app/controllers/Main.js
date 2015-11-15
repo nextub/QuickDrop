@@ -43,8 +43,9 @@
 							cancelable: true,
 							callback: function(index) {
 								if (index == 1) {
+									console.log(notification._payload);
 									DBService.orders.push({name: notification._payload.name, items: notification._payload.items, time: '13:28'});
-									DBService.customers.push({marker: {lat: 45.510, lng: -73.5673}, order: htmlItems});	
+									DBService.customers.push({marker: {lat: 45.510, lng: -73.5673}, order: [htmlItems]});	
 								}
 								
 							}
