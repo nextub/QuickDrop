@@ -20,7 +20,8 @@
 						items: self.items
 					}
 				}
-			})
+			});
+			Router.push('confirm');
 		}
 		self.minus = function (item) {
 			console.log("asd");

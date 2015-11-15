@@ -22,7 +22,7 @@
 									},
 									{
 										label: 'Doritos Cheese',
-										price: '3,99',
+										price: '3.99',
 										q: 4
 									},
 									{
@@ -67,7 +67,7 @@
 							notification._payload = {name: 'Afshin'};
 						}
 						ons.notification.confirm({
-							messageHTML: '<div class="cimage"></div><h3 class="notification-h3">Accepted</h3><p style="text-align: justify; font-size:13px;">Wait for your orders and relax! By' + notification._payload.name + '</p>',
+							messageHTML: '<div class="afshin"></div><h3 class="notification-h3">Accepted</h3><p style="text-align: justify; font-size:13px;">Wait for your orders and relax! By' + notification._payload.name + '</p>',
 							title: 'Order Accepted!',
 							buttonLabels: ['Good!'],
 							animation: 'default', // or 'none'

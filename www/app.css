@@ -215,6 +215,21 @@ ons-carousel-item {
   background-size: cover;
   margin: 0px auto;
 }
+.afshin {
+    width: 100px;
+  height: 100px;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background: url(https://pbs.twimg.com/profile_images/504346601326784512/X2QC740k.jpeg) no-repeat;
+  background-size: cover;
+  margin: 0px auto;
+}
 .notification-h3 {
   margin: 0px;
 }

@@ -82,7 +82,7 @@
 						price: '11.99',
 						img: 'a'
 					},{
-						id: '512312',
+						id: '5122',
 						label: 'Labatt Bleue (12 pack)',
 						price: '20.99',
 						img: 'a'
@@ -95,15 +95,18 @@
 				id: 2,
 				items: [
 					{
-						label: 'something',
+						label: 'item 1',
+						id: 'item 1',
 						price: '41.32',
 						img: 'a'
 					},{
-						label: 'something',
+						label: 'item 2',
+						id: 'item 2',
 						price: '41.32',
 						img: 'a'
 					},{
-						label: 'something',
+						label: 'item 3',
+						id: 'item 3',
 						price: '41.32',
 						img: 'a'
 					}
@@ -116,14 +119,17 @@
 				items: [
 					{
 						label: 'V8 Original',
+						id: 'V8 Original',
 						price: '2.39',
 						img: 'a'
 					},{
 						label: 'Coca-Cola Classique 500ml',
+						id: 'Coca-Cola Classique 500ml',
 						price: '1.99',
 						img: 'a'
 					},{
 						label: 'Pepsi 2L',
+						id: 'Pepsi 2L',
 						price: '2.99',
 						img: 'a'
 					}
@@ -132,7 +138,7 @@
 			{
 				label: 'Confiserie',
 				icon: 'icon-bonbon',
-				id: 4,
+				id: 4
 				
 			},
 			{
@@ -142,15 +148,18 @@
 				items: [
 					{
 						label: 'Lay\'s original',
+						id: 'Lay\'s original',
 						price: '3.49',
 						img: 'a'
 					},{
 						label: 'Miss Vickies Original',
+						id: 'Miss Vickies Original',
 						price: '4.19',
 						img: 'a'
 					},{
 						label: 'Doritos Cheese',
-						price: '3,99',
+						id: 'Doritos Cheese',
+						price: '3.99',
 						img: 'a'
 					}
 				]

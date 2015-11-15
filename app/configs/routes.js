@@ -28,6 +28,9 @@
 			'cart': {
 				templateUrl: 'templates/cart.html'
 			},
+			'confirm': {
+				templateUrl: 'templates/confirm.html'
+			},
 			'map' : {
 				templateUrl: 'templates/map.html'	
 			}
