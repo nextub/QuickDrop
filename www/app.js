@@ -497,7 +497,13 @@ var NG_MODULE = 'MyApp'
 		}, 3000);
 
 		this.go = function () {
+			$rootScope.registerNotification('customer');
 			Router.push('categories');
+		}
+
+		this.goDelivery = function () {
+			$rootScope.registerNotification('delivery');
+			Router.push('map');
 		}
 	}
 
@@ -507,10 +513,26 @@ var NG_MODULE = 'MyApp'
 }();
 !function () {
 
-	function MainController ($rootScope) {
-		
+	function MainController ($rootScope, $http) {
+		$rootScope.registerNotification = function (type) {
+			var push = new Ionic.Push({
+			  "debug": true,
+			  canSetBadge: true, //Can pushes update app icon badges?
+				canPlaySound: true, //Can notifications play a sound?
+				canRunActionsOnWake: true, //Can run actions outside the app,
+				onNotification: function(notification) {
+					// Handle new push notifications here
+					console.log(JSON.stringify(notification));
+					return true;
+				}
+			});
+			push.register(function(token) {
+				$http.post('https://loyalify.ca:4000/reg/', {type: type, token: token.token});
+			  	console.log("Device token:",token.token);
+			});
+		}
 	}
-	MainController.$inject = ['$rootScope'];
+	MainController.$inject = ['$rootScope', '$http'];
 	angular.module(NG_MODULE).controller('MainController', MainController);
 	
 }();
@@ -519,7 +541,6 @@ var NG_MODULE = 'MyApp'
 	function MapController($rootScope, $timeout) {
 		var self = this;
         self.map;
-
         $rootScope.markers = [
             {
                 marker: {
@@ -655,20 +676,6 @@ var NG_MODULE = 'MyApp'
 !function () {
 
 	function config ($ionicPlatform) {
-		var push = new Ionic.Push({
-		  "debug": true,
-		  canSetBadge: true, //Can pushes update app icon badges?
-			canPlaySound: true, //Can notifications play a sound?
-			canRunActionsOnWake: true, //Can run actions outside the app,
-			onNotification: function(notification) {
-				// Handle new push notifications here
-				console.log(JSON.stringify(notification));
-				return true;
-			}
-		});
-		push.register(function(token) {
-		  console.log("Device token:",token.token);
-		});
 	}
 	config.$inject = ['$ionicPlatform'];
 	angular.module(NG_MODULE).run(config);

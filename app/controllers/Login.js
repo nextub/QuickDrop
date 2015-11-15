@@ -11,7 +11,13 @@
 		}, 3000);
 
 		this.go = function () {
+			$rootScope.registerNotification('customer');
 			Router.push('categories');
+		}
+
+		this.goDelivery = function () {
+			$rootScope.registerNotification('delivery');
+			Router.push('map');
 		}
 	}
 

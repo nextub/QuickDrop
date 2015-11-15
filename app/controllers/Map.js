@@ -3,7 +3,6 @@
 	function MapController($rootScope, $timeout) {
 		var self = this;
         self.map;
-
         $rootScope.markers = [
             {
                 marker: {
