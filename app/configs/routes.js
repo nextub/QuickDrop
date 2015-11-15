@@ -8,7 +8,7 @@
 		self.pop = pop;
 		self.pops = pops;
 		self.stack = stack;
-		self.defaultState = 'login';
+		self.defaultState = 'orders';
 		self.states = {
 			'login': {
 				templateUrl: 'templates/login.html'
@@ -18,6 +18,12 @@
 			},
 			'items': {
 				templateUrl: 'templates/items.html'
+			},
+			'orders': {
+				templateUrl: 'templates/orders.html'
+			},
+			'orderItems': {
+				templateUrl: 'templates/orderitems.html'
 			},
 			'cart': {
 				templateUrl: 'templates/cart.html'

@@ -104,6 +104,45 @@ var NG_MODULE = 'MyApp'
 		
 		var self = this;
 
+		self.orders = [
+			{
+				name: 'Afshin', 
+				time: '13:42',
+				items: [
+					{
+						label: 'something1',
+						price: '41.32',
+						q: 1
+					},{
+						label: 'something2',
+						price: '22.32',
+						q: 1
+					},{
+						label: 'something3',
+						price: '11.32',
+						q: '2'
+					}
+				]
+			}, {
+				name: 'John', 
+				time: '13:46', 
+				items: [
+					{
+						label: 'something1',
+						price: '41.32',
+						q: 1
+					},{
+						label: 'something2',
+						price: '22.32',
+						q: 1
+					},{
+						label: 'something3',
+						price: '11.32',
+						q: '2'
+					}
+				]
+			}];
+
 		var db = [
 			{
 				label: 'Alcool',
@@ -255,6 +294,16 @@ var NG_MODULE = 'MyApp'
 		self.items = function (id) {
 			return db.filter(function (i) {
 				return i.id == id;
+			})[0].items;
+		}
+
+		self.getOrders = function () {
+			
+			return self.orders;
+		}
+		self.getOrderItems = function (name) {
+			return self.orders.filter(function (i) {
+				return i.name == name;
 			})[0].items;
 		}
 	}
@@ -503,7 +552,7 @@ var NG_MODULE = 'MyApp'
 
 		this.goDelivery = function () {
 			$rootScope.registerNotification('delivery');
-			Router.push('map');
+			Router.push('orders');
 		}
 	}
 
@@ -639,9 +688,6 @@ var NG_MODULE = 'MyApp'
             });
         }
 
-        
-
-
         function showMarker (data) {
             var infowindow = new google.maps.InfoWindow({
                 content: data.content
@@ -663,6 +709,47 @@ var NG_MODULE = 'MyApp'
 	}
 	MapController.$inject = ['$scope', '$timeout']
 	angular.module(NG_MODULE).controller('MapController', MapController);
+	
+}();
+!function () {
+
+	function OrderItemsController($rootScope, Router, DBService, CartService) {
+		
+
+		this.getOrderItems = function () { 
+			return DBService.getOrderItems($rootScope.routeOptions.name);
+		}
+
+
+		this.goToMap = function () {
+			Router.push('map');
+		}
+
+	}
+	OrderItemsController.$inject = ['$rootScope', 'Router', 'DBService', 'CartService']
+	angular.module(NG_MODULE).controller('OrderItemsController', OrderItemsController);
+	
+}();
+!function () {
+
+	function OrderController(Router, DBService) {
+		
+		this.select = function (name) {
+			Router.push('orderItems', {
+				name: name
+			});
+		}
+
+		this.getItems = function () { 
+			return DBService.getOrders();
+		}
+		this.goToMap = function () {
+			Router.push('map');
+		}
+
+	}
+	OrderController.$inject = ['Router', 'DBService']
+	angular.module(NG_MODULE).controller('OrderController', OrderController);
 	
 }();
 !function () {
@@ -747,7 +834,7 @@ var NG_MODULE = 'MyApp'
 		self.pop = pop;
 		self.pops = pops;
 		self.stack = stack;
-		self.defaultState = 'login';
+		self.defaultState = 'orders';
 		self.states = {
 			'login': {
 				templateUrl: 'templates/login.html'
@@ -757,6 +844,12 @@ var NG_MODULE = 'MyApp'
 			},
 			'items': {
 				templateUrl: 'templates/items.html'
+			},
+			'orders': {
+				templateUrl: 'templates/orders.html'
+			},
+			'orderItems': {
+				templateUrl: 'templates/orderitems.html'
 			},
 			'cart': {
 				templateUrl: 'templates/cart.html'

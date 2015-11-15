@@ -1,11 +1,12 @@
 <ons-navigator ng-controller="MapController as vm">
    <ons-page>
         <ons-toolbar modifier="material">
-          <div class="left">
-            <ons-toolbar-button ng-click="globals.menu.open()" modifier="material">
-              <ons-icon icon="md-menu"></ons-icon>
-            </ons-toolbar-button>
-          </div>
+        <div class="left">
+              <ons-toolbar-button modifier="material" ng-click="globals.nav.popPage()">
+                <i class="fa fa-arrow-left"></i>
+                <ons-ripple color="rgba(0, 150, 136, 0.1)"></ons-ripple>
+              </ons-toolbar-button>
+            </div>
           <div class="center">Map</div>
           <div class="right">
             <ons-toolbar-button ng-click="vm.refresh()" modifier="material">

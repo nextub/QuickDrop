@@ -98,9 +98,6 @@
             });
         }
 
-        
-
-
         function showMarker (data) {
             var infowindow = new google.maps.InfoWindow({
                 content: data.content

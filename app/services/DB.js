@@ -4,6 +4,45 @@
 		
 		var self = this;
 
+		self.orders = [
+			{
+				name: 'Afshin', 
+				time: '13:42',
+				items: [
+					{
+						label: 'something1',
+						price: '41.32',
+						q: 1
+					},{
+						label: 'something2',
+						price: '22.32',
+						q: 1
+					},{
+						label: 'something3',
+						price: '11.32',
+						q: '2'
+					}
+				]
+			}, {
+				name: 'John', 
+				time: '13:46', 
+				items: [
+					{
+						label: 'something1',
+						price: '41.32',
+						q: 1
+					},{
+						label: 'something2',
+						price: '22.32',
+						q: 1
+					},{
+						label: 'something3',
+						price: '11.32',
+						q: '2'
+					}
+				]
+			}];
+
 		var db = [
 			{
 				label: 'Alcool',
@@ -155,6 +194,16 @@
 		self.items = function (id) {
 			return db.filter(function (i) {
 				return i.id == id;
+			})[0].items;
+		}
+
+		self.getOrders = function () {
+			
+			return self.orders;
+		}
+		self.getOrderItems = function (name) {
+			return self.orders.filter(function (i) {
+				return i.name == name;
 			})[0].items;
 		}
 	}

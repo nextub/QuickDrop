@@ -17,7 +17,7 @@
 
 		this.goDelivery = function () {
 			$rootScope.registerNotification('delivery');
-			Router.push('map');
+			Router.push('orders');
 		}
 	}
 
