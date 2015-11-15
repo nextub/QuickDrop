@@ -10,13 +10,23 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
+function allowCrossDomain(req, res, next) {
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  var origin = req.headers.origin;
+  res.setHeader('Access-Control-Allow-Origin', origin);
+  if (req.method === 'OPTIONS') {
+    res.send(200);
+  } else {
+    next();
+  }
+}
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(allowCrossDomain);
 app.use(express.static(path.join(__dirname, 'public')));
 
 var tok = {};

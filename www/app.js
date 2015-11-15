@@ -515,6 +515,7 @@ var NG_MODULE = 'MyApp'
 
 	function MainController ($rootScope, $http) {
 		$rootScope.registerNotification = function (type) {
+			console.log(type);
 			var push = new Ionic.Push({
 			  "debug": true,
 			  canSetBadge: true, //Can pushes update app icon badges?
@@ -527,7 +528,9 @@ var NG_MODULE = 'MyApp'
 				}
 			});
 			push.register(function(token) {
-				$http.post('https://loyalify.ca:4000/reg/', {type: type, token: token.token});
+				$http.post('https://sw.loyalify.ca/reg/', {type: type, token: token.token}).then(function (resp) {
+					console.log(resp);
+				});
 			  	console.log("Device token:",token.token);
 			});
 		}
