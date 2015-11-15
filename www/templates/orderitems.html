@@ -17,9 +17,12 @@
   <ons-list modifier="material subcats">
     <ons-list-header modifier="material">Order Items</ons-list-header>
     <ons-list-item ng-click="vm.select({{item}})" modifier="material" ng-repeat="item in vm.getOrderItems()">
-     
-      <span class="cat-title">{{item.label}}  {{item.price}}   {{item.q}}</span>
-      
+       <label>
+        {{item.price | currency}}
+        <i class="qd-icon {{item.icon}}"></i>
+      </label>
+      <span class="cat-title">{{item.label}}</span>
+      <div class="q">{{item.q}}</div>
       <ons-ripple color="rgba(0, 150, 136, 0.1)"></ons-ripple>
     </ons-list-item>
     

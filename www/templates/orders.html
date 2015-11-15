@@ -11,7 +11,8 @@
   <ons-list modifier="material cats">
     <ons-list-header modifier="material">Orders</ons-list-header>
     <ons-list-item ng-click="vm.select(item.name)" modifier="material chevron" ng-repeat="item in vm.getItems()">
-      <span class="cat-title">{{item.name}} @ {{item.time}}</span>
+      <span class="cat-title">{{item.name}}</span>
+      <div class="qu">{{vm.count(item)}} items - @ {{item.time}}</div>
       <ons-ripple color="rgba(0, 150, 136, 0.1)"></ons-ripple>
     </ons-list-item>
   

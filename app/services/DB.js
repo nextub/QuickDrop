@@ -33,17 +33,15 @@
 				time: '13:42',
 				items: [
 					{
-						label: 'something1',
-						price: '41.32',
+						id: '123',
+						label: 'Budweiser (1,18L)',
+						price: '6.99',
 						q: 1
-					},{
-						label: 'something2',
-						price: '22.32',
-						q: 1
-					},{
-						label: 'something3',
-						price: '11.32',
-						q: '2'
+					},
+					{
+						label: 'V8 Original',
+						price: '2.39',
+						q: 8
 					}
 				]
 			}, {
@@ -51,17 +49,13 @@
 				time: '13:46', 
 				items: [
 					{
-						label: 'something1',
-						price: '41.32',
-						q: 1
+						label: 'Coca-Cola Classique 500ml',
+						price: '1.99',
+						q: 6
 					},{
-						label: 'something2',
-						price: '22.32',
-						q: 1
-					},{
-						label: 'something3',
-						price: '11.32',
-						q: '2'
+						label: 'Pepsi 2L',
+						price: '2.99',
+						q: 2
 					}
 				]
 			}];

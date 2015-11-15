@@ -14,6 +14,11 @@
 		this.goToMap = function () {
 			Router.push('map');
 		}
+		this.count = function (item) {
+			var n = 0;
+			for (var i=0;i<item.items.length;i++) n+= item.items[i].q;
+			return n;
+		}
 
 	}
 	OrderController.$inject = ['Router', 'DBService']

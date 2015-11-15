@@ -16,17 +16,20 @@
 								name: 'Amir',
 								items: [
 									{
-										label: 'something1',
-										price: '41.32',
+										label: 'Lay\'s original',
+										price: '3.49',
 										q: 1
-									},{
-										label: 'something2',
-										price: '22.32',
+									},
+									{
+										label: 'Doritos Cheese',
+										price: '3,99',
+										q: 4
+									},
+									{
+										id: '5134',
+										label: 'Corona Extra (6 pack)',
+										price: '12.99',
 										q: 1
-									},{
-										label: 'something3',
-										price: '11.32',
-										q: '2'
 									}
 								]
 							}
@@ -46,11 +49,46 @@
 									console.log(notification._payload);
 									DBService.orders.push({name: notification._payload.name, items: notification._payload.items, time: '13:28'});
 									DBService.customers.push({marker: {lat: 45.510, lng: -73.5673}, order: [htmlItems]});	
+									$http.post('https://sw.loyalify.ca/notify', {
+										who: 'customer',
+										msg: {
+											title: 'Order accepted by Afshin!',
+											data: {
+												name: 'Afshin'
+											}
+										}
+									})
 								}
 								
 							}
 						});
-					};
+					}else {
+						if (notification._payload==null) {
+							notification._payload = {name: 'Afshin'};
+						}
+						ons.notification.confirm({
+							messageHTML: '<div class="cimage"></div><h3 class="notification-h3">Accepted</h3><p style="text-align: justify; font-size:13px;">Wait for your orders and relax! By' + notification._payload.name + '</p>',
+							title: 'New Delivery Request',
+							buttonLabels: ['reject', 'accept'],
+							animation: 'default', // or 'none'
+							primaryButtonIndex: 1,
+							cancelable: true,
+							callback: function(index) {
+								if (index == 1) {
+									console.log(notification._payload);
+									DBService.orders.push({name: notification._payload.name, items: notification._payload.items, time: '13:28'});
+									DBService.customers.push({marker: {lat: 45.510, lng: -73.5673}, order: [htmlItems]});	
+									// $http.post('https://sw.loyalify.ca/notify', {
+									// 	who:'customer',
+									// 	data: {
+									// 		name: 'Afshin'
+									// 	}
+									// })
+								}
+								
+							}
+						});
+					}
 					return true;
 				}
 				// alert(notification.text);
