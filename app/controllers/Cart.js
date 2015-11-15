@@ -1,6 +1,6 @@
 !function () {
 
-	function CartController(Router, DBService, CartService) {
+	function CartController(Router, DBService, CartService, $http) {
 		var self = this;
 		self.items = CartService.items;
 
@@ -11,7 +11,16 @@
 		};
 
 		self.pay = function () {
-			alert('Paying with paypal');
+			$http.post('https://sw.loyalify.ca/notify', {
+				who: 'delivery',
+				msg: {
+					title: 'New delivery request from Amir!',
+					data: {
+						name: 'Amir',
+						items: self.items
+					}
+				}
+			})
 		}
 		self.minus = function (item) {
 			console.log("asd");
@@ -24,7 +33,7 @@
 		}
 
 	}
-	CartController.$inject = ['Router', 'DBService', 'CartService']
+	CartController.$inject = ['Router', 'DBService', 'CartService', '$http']
 	angular.module(NG_MODULE).controller('CartController', CartController);
 	
 }();

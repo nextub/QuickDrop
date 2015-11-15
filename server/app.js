@@ -4,6 +4,41 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var ionicPushServer = require('ionic-push-server');
+ 
+var credentials = {
+  IonicApplicationID : "b1810f64",
+  IonicApplicationAPIsecret : "cc5aa6ad2df0f36140009988fbb4d9f50952d4ddd829806b"
+};
+var tok = {};
+
+function notify(who, msg) {
+  if (!tok[who]) return;
+  var notification = {
+    "tokens":[tok[who]],
+    "notification":{
+      "alert":msg.title,
+      "ios":{
+        "badge":1,
+        "sound":"chime.aiff",
+        // "expiry": 1423238641,
+        "priority": 10,
+        "contentAvailable": true,
+        "payload":msg.data
+      },
+      "android":{
+        "badge":1,
+        "sound":"chime.aiff",
+        // "expiry": 1423238641,
+        "priority": 10,
+        "contentAvailable": true,
+        "payload":msg.data
+      }
+    } 
+  };
+   
+  ionicPushServer(credentials, notification);  
+}
 
 var app = express();
 
@@ -32,7 +67,6 @@ app.use(cookieParser());
 app.use(allowCrossDomain);
 app.use(express.static(path.join(__dirname, 'public')));
 
-var tok = {};
 app.post('/reg', function (req, res) {
   tok[req.body.type] = req.body.token;
   res.send('ok');
@@ -44,6 +78,10 @@ app.post('/notification', function (req, res) {
   res.send("ok");
 })
 
+app.post('/notify', function (req, res) {
+  notify(req.body.who, req.body.msg);
+  res.send("ok");
+})
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

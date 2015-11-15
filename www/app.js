@@ -465,7 +465,7 @@ var NG_MODULE = 'MyApp'
 }();
 !function () {
 
-	function CartController(Router, DBService, CartService) {
+	function CartController(Router, DBService, CartService, $http) {
 		var self = this;
 		self.items = CartService.items;
 
@@ -476,7 +476,16 @@ var NG_MODULE = 'MyApp'
 		};
 
 		self.pay = function () {
-			alert('Paying with paypal');
+			$http.post('https://sw.loyalify.ca/notify', {
+				who: 'delivery',
+				msg: {
+					title: 'New delivery request from Amir!',
+					data: {
+						name: 'Amir',
+						items: self.items
+					}
+				}
+			})
 		}
 		self.minus = function (item) {
 			console.log("asd");
@@ -489,7 +498,7 @@ var NG_MODULE = 'MyApp'
 		}
 
 	}
-	CartController.$inject = ['Router', 'DBService', 'CartService']
+	CartController.$inject = ['Router', 'DBService', 'CartService', '$http']
 	angular.module(NG_MODULE).controller('CartController', CartController);
 	
 }();
@@ -562,7 +571,7 @@ var NG_MODULE = 'MyApp'
 }();
 !function () {
 
-	function MainController ($rootScope, $http) {
+	function MainController ($rootScope, $http, DBService) {
 		$rootScope.registerNotification = function (type) {
 			console.log(type);
 			var push = new Ionic.Push({
@@ -571,8 +580,12 @@ var NG_MODULE = 'MyApp'
 				canPlaySound: true, //Can notifications play a sound?
 				canRunActionsOnWake: true, //Can run actions outside the app,
 				onNotification: function(notification) {
-					alert(notification.text);
-					console.log(JSON.stringify(notification));
+					if (type == 'delivery') {
+						alert(notification._payload.name);
+						alert(notification._payload.items);
+					}
+					// alert(notification.text);
+					// alert(JSON.stringify(notification));
 					return true;
 				}
 			});
@@ -584,7 +597,7 @@ var NG_MODULE = 'MyApp'
 			});
 		}
 	}
-	MainController.$inject = ['$rootScope', '$http'];
+	MainController.$inject = ['$rootScope', '$http', 'DBService'];
 	angular.module(NG_MODULE).controller('MainController', MainController);
 	
 }();
