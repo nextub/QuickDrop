@@ -19,6 +19,9 @@
 			'items': {
 				templateUrl: 'templates/items.html'
 			},
+			'cart': {
+				templateUrl: 'templates/cart.html'
+			},
 			'map' : {
 				templateUrl: 'templates/map.html'	
 			}

@@ -41,6 +41,65 @@ var NG_MODULE = 'MyApp'
 }();
 !function () {
 
+	function CartService() {
+		
+		var self = this;
+		self.items = [];
+
+		self.q = function (item) {
+			return self.items.filter(function (i) {
+				return i.id == item.id;
+			}).reduce(function (s, i) {
+				return s+i.q;
+			}, 0)
+		}
+
+		self.add = function (item) {
+			var e = self.items.filter(function (i) {
+				return i.id==item.id;
+			});
+			if (e.length == 0) {
+				self.items.push({
+					id: item.id,
+					q: 1,
+					label: item.label,
+					price: item.price
+				});
+			}else {
+				e[0].q++;
+			}
+		}
+
+		self.minus = function (item) {
+			var e = self.items.filter(function (i) {
+				return i.id==item.id;
+			});
+			if (e.length == 0) {
+				return;
+			}else {
+				e[0].q--;
+				if (e[0].q<0) e[0].q = 0;
+			}	
+		}
+
+		self.plus = function (item) {
+			var e = self.items.filter(function (i) {
+				return i.id==item.id;
+			});
+			console.log(e);
+			if (e.length == 0) {
+				return;
+			}else {
+				e[0].q++;
+			}
+		}
+	}
+
+	CartService.$inject = ['$http', '$q'];
+	angular.module(NG_MODULE).service('CartService', CartService);
+}();
+!function () {
+
 	function DBService($http, $q) {
 		
 		var self = this;
@@ -52,14 +111,17 @@ var NG_MODULE = 'MyApp'
 				id: 1,
 				items: [
 					{
+						id: '123',
 						label: 'something1',
 						price: '41.32',
 						img: 'a'
 					},{
+						id: '5134',
 						label: 'something2',
 						price: '22.32',
 						img: 'a'
 					},{
+						id: '512312',
 						label: 'something3',
 						price: '11.32',
 						img: 'a'
@@ -354,8 +416,39 @@ var NG_MODULE = 'MyApp'
 }();
 !function () {
 
-	function CatController(Router, DBService) {
+	function CartController(Router, DBService, CartService) {
+		var self = this;
+		self.items = CartService.items;
+
+		self.getTotal = function () {
+			return self.items.reduce(function (s, e) {
+				return s+e.q*e.price;
+			}, 0);
+		};
+
+		self.pay = function () {
+			alert('Paying with paypal');
+		}
+		self.minus = function (item) {
+			console.log("asd");
+			console.log(item);
+			CartService.minus(item);
+		}
+		self.plus = function (item) {
+			console.log(item);
+			CartService.plus(item);
+		}
+
+	}
+	CartController.$inject = ['Router', 'DBService', 'CartService']
+	angular.module(NG_MODULE).controller('CartController', CartController);
+	
+}();
+!function () {
+
+	function CatController(Router, DBService, CartService) {
 		this.items = DBService.categories();
+		this.cart = CartService;
 		// console.log(items);
 		this.select = function (id) {
 			Router.push('items', {
@@ -363,23 +456,31 @@ var NG_MODULE = 'MyApp'
 			});
 		}
 
+		this.goCart = function () {
+			Router.push('cart');
+		}
+
 	}
-	CatController.$inject = ['Router', 'DBService']
+	CatController.$inject = ['Router', 'DBService', 'CartService']
 	angular.module(NG_MODULE).controller('CatController', CatController);
 	
 }();
 !function () {
 
-	function ItemsController($rootScope, Router, DBService) {
+	function ItemsController($rootScope, Router, DBService, CartService) {
 		this.items = DBService.items($rootScope.routeOptions.id);
-		console.log(this.items);
-		// console.log(items);
+		this.cart = CartService;
+
 		this.select = function (item) {
-			console.log(item);
+			this.cart.add(item);
+		}
+
+		this.goCart = function () {
+			Router.push('cart');
 		}
 
 	}
-	ItemsController.$inject = ['$rootScope', 'Router', 'DBService']
+	ItemsController.$inject = ['$rootScope', 'Router', 'DBService', 'CartService']
 	angular.module(NG_MODULE).controller('ItemsController', ItemsController);
 	
 }();
@@ -546,6 +647,9 @@ var NG_MODULE = 'MyApp'
 			},
 			'items': {
 				templateUrl: 'templates/items.html'
+			},
+			'cart': {
+				templateUrl: 'templates/cart.html'
 			},
 			'map' : {
 				templateUrl: 'templates/map.html'	

@@ -45,26 +45,25 @@
     /* Uncomment for 3D effect */
     /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
   }
-.icon-info-outline:before { content: '\e800'; } /* '' */
-.icon-dot-3:before { content: '\e801'; } /* '' */
-.icon-menu:before { content: '\e802'; } /* '' */
-.icon-angle-down:before { content: '\e803'; } /* '' */
-.icon-boisson:before { content: '\e804'; } /* '' */
-.icon-bonbon:before { content: '\e805'; } /* '' */
-.icon-cartplein:before { content: '\e806'; } /* '' */
-.icon-cartvide:before { content: '\e807'; } /* '' */
-.icon-croustille:before { content: '\e808'; } /* '' */
-.icon-pret:before { content: '\e809'; } /* '' */
-.icon-tabac:before { content: '\e80a'; } /* '' */
-.icon-vin:before { content: '\e80b'; } /* '' */
-.icon-down-open-big:before { content: '\e80c'; } /* '' */
 
+.icon-boisson:before { content: '\e800'; } /* '' */
+.icon-bonbon:before { content: '\e801'; } /* '' */
+.icon-cartplein:before { content: '\e802'; } /* '' */
+.icon-cartvide:before { content: '\e803'; } /* '' */
+.icon-croustille:before { content: '\e804'; } /* '' */
+.icon-pret:before { content: '\e805'; } /* '' */
+.icon-tabac:before { content: '\e806'; } /* '' */
+.icon-vin:before { content: '\e807'; } /* '' */
+.icon-dot-3:before { content: '\e808'; } /* '' */
+.icon-facebook:before { content: '\e809'; } /* '' */
+.icon-down-open-big:before { content: '\e80a'; } /* '' */
 .icon-cartvide-1:before { content: '\e80d'; } /* '' */
 
 .checkbox--material {
   display: inline !important;
   margin-right: 20px;
 }
+
 
 .page__background {
   background-color: white;
@@ -165,4 +164,38 @@ ons-carousel-item {
 }
 .list--cats label {
   font-size: 1.4em;
+}
+
+
+.list--subcats .q{
+  position: absolute;
+    right: 16px;
+    top: 20%;
+    color: #aaa;
+    line-height: 28px;
+    height: 28px;
+}
+
+.list--subcats .price{
+  position: absolute;
+    right: 16px;
+    top: 20%;
+    color: #aaa;
+    line-height: 28px;
+    height: 28px;
+    font-size: 0.8em;
+}
+.list__item--tight {
+  font-size: 0.8em;
+  height: 30px;
+}
+.list__item--tight label {
+  width: 20px;
+  display: block;
+  float: left;
+}
+.bigger {
+  font-size:1em;
+  font-weight: bold;
+  color: black;
 }

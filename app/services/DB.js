@@ -11,14 +11,17 @@
 				id: 1,
 				items: [
 					{
+						id: '123',
 						label: 'something1',
 						price: '41.32',
 						img: 'a'
 					},{
+						id: '5134',
 						label: 'something2',
 						price: '22.32',
 						img: 'a'
 					},{
+						id: '512312',
 						label: 'something3',
 						price: '11.32',
 						img: 'a'
