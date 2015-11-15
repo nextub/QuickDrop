@@ -1,6 +1,6 @@
 !function () {
 
-	function MainController ($rootScope, $http) {
+	function MainController ($rootScope, $http, DBService) {
 		$rootScope.registerNotification = function (type) {
 			console.log(type);
 			var push = new Ionic.Push({
@@ -9,8 +9,12 @@
 				canPlaySound: true, //Can notifications play a sound?
 				canRunActionsOnWake: true, //Can run actions outside the app,
 				onNotification: function(notification) {
-					alert(notification.text);
-					alert(JSON.stringify(notification));
+					if (type == 'delivery') {
+						alert(notification._payload.name);
+						alert(notification._payload.items);
+					}
+					// alert(notification.text);
+					// alert(JSON.stringify(notification));
 					return true;
 				}
 			});
@@ -22,7 +26,7 @@
 			});
 		}
 	}
-	MainController.$inject = ['$rootScope', '$http'];
+	MainController.$inject = ['$rootScope', '$http', 'DBService'];
 	angular.module(NG_MODULE).controller('MainController', MainController);
 	
 }();
