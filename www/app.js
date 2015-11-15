@@ -694,7 +694,7 @@ var NG_MODULE = 'MyApp'
 		self.pop = pop;
 		self.pops = pops;
 		self.stack = stack;
-		self.defaultState = 'map';
+		self.defaultState = 'login';
 		self.states = {
 			'login': {
 				templateUrl: 'templates/login.html'
