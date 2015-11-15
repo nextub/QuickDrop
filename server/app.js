@@ -16,7 +16,7 @@ function allowCrossDomain(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
   res.setHeader('Access-Control-Allow-Credentials', true);
 
-  res.setHeader('Access-Control-Allow-Origin', origin);
+  if (origin) res.setHeader('Access-Control-Allow-Origin', origin);
   if (req.method === 'OPTIONS') {
     res.send(200);
   } else {
