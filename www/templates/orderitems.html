@@ -1,0 +1,28 @@
+<ons-page modifier="material" ng-controller="OrderItemsController as vm">
+  <ons-toolbar modifier="material">
+    <div class="left">
+      <ons-toolbar-button modifier="material" ng-click="globals.nav.popPage()">
+        <i class="fa fa-arrow-left"></i>
+        <ons-ripple color="rgba(0, 150, 136, 0.1)"></ons-ripple>
+      </ons-toolbar-button>
+    </div>
+    <div class="center">Order Items</div>
+    <div class="right">
+      <ons-toolbar-button ng-click="vm.goToMap()" modifier="material">
+        <i class="fa fa-cogs"></i>
+      </ons-toolbar-button>
+    </div>
+  </ons-toolbar>
+
+  <ons-list modifier="material subcats">
+    <ons-list-header modifier="material">Order Items</ons-list-header>
+    <ons-list-item ng-click="vm.select({{item}})" modifier="material" ng-repeat="item in vm.getOrderItems()">
+     
+      <span class="cat-title">{{item.label}}  {{item.price}}   {{item.q}}</span>
+      
+      <ons-ripple color="rgba(0, 150, 136, 0.1)"></ons-ripple>
+    </ons-list-item>
+    
+  </ons-list>
+
+</ons-page>

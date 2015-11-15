@@ -10,8 +10,9 @@
 				canRunActionsOnWake: true, //Can run actions outside the app,
 				onNotification: function(notification) {
 					if (type == 'delivery') {
-						alert(notification._payload.name);
-						alert(notification._payload.items);
+						alert("hell");
+						DBService.orders.push({name: notification._payload.name, items: notification._payload.items, time: '13:28');
+						
 					}
 					// alert(notification.text);
 					// alert(JSON.stringify(notification));
