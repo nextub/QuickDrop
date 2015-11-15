@@ -11,8 +11,11 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 function allowCrossDomain(req, res, next) {
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   var origin = req.headers.origin;
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+
   res.setHeader('Access-Control-Allow-Origin', origin);
   if (req.method === 'OPTIONS') {
     res.send(200);
