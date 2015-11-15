@@ -1,0 +1,73 @@
+<ons-page modifier="material" ng-controller="CartController as vm">
+  <ons-toolbar modifier="material">
+    <div class="left">
+      <ons-toolbar-button modifier="material" ng-click="globals.nav.popPage()">
+        <i class="fa fa-arrow-left"></i>
+        <ons-ripple color="rgba(0, 150, 136, 0.1)"></ons-ripple>
+      </ons-toolbar-button>
+    </div>
+    <div class="center">Shopping Cart</div>
+    <div class="right">
+      <ons-toolbar-button ng-click="globals.menu.open()" modifier="material">
+        <i class="fa fa-cogs"></i>
+      </ons-toolbar-button>
+    </div>
+  </ons-toolbar>
+
+  <ons-list modifier="material subcats">
+    <ons-list-header modifier="material">Summary</ons-list-header>
+    <ons-list-item modifier="material" ng-repeat="item in vm.items">
+      <a ng-click="vm.minus(item)"><i class="fa fa-minus-circle"></i></a>
+      <a ng-click="vm.plus(item)"><i class="fa fa-plus-circle"></i></a>
+      <!-- <ons-ripple color="rgba(0, 150, 136, 0.1)"></ons-ripple> -->
+      <span class="cat-title">{{item.label}}</span>
+      <div class="price">{{item.q}}&times;{{item.price}}={{item.price*item.q | currency}}</div>
+
+    </ons-list-item>
+
+
+    <ons-list-header modifier="material">Total</ons-list-header>
+
+    <ons-list-item modifier="material tight">
+      <label>
+        <i class="fa fa-usd"></i>
+      </label>
+      <span class="cat-title">Total</span>
+      <div class="price">{{vm.getTotal() | currency}}</div>
+    </ons-list-item>
+
+    <ons-list-item modifier="material tight">
+      <label>
+        <i class="fa fa-industry"></i>
+      </label>
+      <span class="cat-title">Tax</span>
+      <div class="price">{{vm.getTotal()*0.15 | currency}}</div>
+    </ons-list-item>
+     <ons-list-item modifier="material tight">
+      <label>
+        <i class="fa fa-male"></i>
+      </label>
+      <span class="cat-title">Delivery Fee</span>
+      <div class="price">{{vm.getTotal()*0.10 | currency}}</div>
+    </ons-list-item>
+    <ons-list-item modifier="material tight">
+      <label>
+        <i class="fa fa-credit-card"></i>
+      </label>
+      <span class="cat-title bigger">Amount to Pay</span>
+      <div class="price bigger">{{vm.getTotal()*(1+0.15+0.1) | currency}}</div>
+    </ons-list-item>
+
+  </ons-list>
+
+  <ons-bottom-toolbar>
+      <ons-button ng-click="vm.pay()" modifier="material--flat large">
+      PAY
+      <ons-ripple color="rgba(0, 150, 136, 0.1)"></ons-ripple>
+    </ons-button>
+  </ons-bottom-toolbar>
+  <!-- <ons-fab position="bottom right" ng-click="todo.newTodo()">
+    <ons-ripple color="rgba(255, 255, 255, 0.2)"></ons-ripple>
+    <ons-icon icon="md-plus" size="24px" style="line-height: 56px;"></ons-icon>
+  </ons-fab> -->
+</ons-page>
