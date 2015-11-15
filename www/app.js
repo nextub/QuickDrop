@@ -523,7 +523,7 @@ var NG_MODULE = 'MyApp'
 				canRunActionsOnWake: true, //Can run actions outside the app,
 				onNotification: function(notification) {
 					alert(notification.text);
-					console.log(JSON.stringify(notification));
+					alert(JSON.stringify(notification));
 					return true;
 				}
 			});
