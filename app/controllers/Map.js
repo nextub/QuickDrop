@@ -30,7 +30,8 @@
                 showMarker ( {
                     lat: entry.marker.lat,
                     lng: entry.marker.lng,
-                    content: content
+                    content: content,
+                    pinColor: "FE7569"
                 });
 
                 var location = new google.maps.LatLng(entry.marker.lat,  entry.marker.lng);
@@ -47,7 +48,9 @@
                 showMarker ( {
                     lat: entry.marker.lat,
                     lng: entry.marker.lng,
-                    content: content
+                    content: content,
+                    pinColor: "1364CF"
+
                 });
 
                 var location = new google.maps.LatLng(entry.marker.lat,  entry.marker.lng);
@@ -60,10 +63,24 @@
                 content: data.content
             });
             var location = {lat: data.lat, lng: data.lng};
+            
+
+            var pinColor = data.pinColor;
+            var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+                new google.maps.Size(21, 34),
+                new google.maps.Point(0,0),
+                new google.maps.Point(10, 34));
+            var pinShadow = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_shadow",
+                new google.maps.Size(40, 37),
+                new google.maps.Point(0, 0),
+                new google.maps.Point(12, 35));
 
             var marker = new google.maps.Marker({
                 position: location,
                 map: self.map,
+                icon: pinImage,
+                shadow: pinShadow
+
             });
             marker.addListener('click', function() {
                 infowindow.open(self.map, marker);
