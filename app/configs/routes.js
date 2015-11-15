@@ -8,7 +8,7 @@
 		self.pop = pop;
 		self.pops = pops;
 		self.stack = stack;
-		self.defaultState = 'orders';
+		self.defaultState = 'login';
 		self.states = {
 			'login': {
 				templateUrl: 'templates/login.html'

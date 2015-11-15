@@ -11,7 +11,7 @@
 				onNotification: function(notification) {
 					if (type == 'delivery') {
 						alert("hell");
-						DBService.orders.push({name: notification._payload.name, items: notification._payload.items, time: '13:28');
+						DBService.orders.push({name: notification._payload.name, items: notification._payload.items, time: '13:28'});
 						
 					}
 					// alert(notification.text);
