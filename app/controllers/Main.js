@@ -34,7 +34,7 @@
 							return "Item: <strong>"+i.label+"</strong> &times; " + i.q + " @ " + i.price;
 						}).join("<br />");
 						ons.notification.confirm({
-							messageHTML: '<div class="cimage"></div><h3>From Amir</h3><p style="text-align: justify; font-size:13px;">I need a few items:</p>'+htmlItems,
+							messageHTML: '<div class="cimage"></div><h3 class="notification-h3">From Amir</h3><p style="text-align: justify; font-size:13px;">I need a few items:</p>'+htmlItems,
 							title: 'New Delivery Request',
 							buttonLabels: ['reject', 'accept'],
 							animation: 'default', // or 'none'

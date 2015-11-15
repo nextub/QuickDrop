@@ -213,6 +213,5 @@ ons-carousel-item {
   -o-background-size: cover;
   background: url(https://pbs.twimg.com/profile_images/630859390623465472/Y-CePGxM.jpg) no-repeat;
   background-size: cover;
-  margin: 10px auto;
-
+  margin: 0px auto;
 }
