@@ -68,23 +68,12 @@
 						}
 						ons.notification.confirm({
 							messageHTML: '<div class="cimage"></div><h3 class="notification-h3">Accepted</h3><p style="text-align: justify; font-size:13px;">Wait for your orders and relax! By' + notification._payload.name + '</p>',
-							title: 'New Delivery Request',
-							buttonLabels: ['reject', 'accept'],
+							title: 'Order Accepted!',
+							buttonLabels: ['Good!'],
 							animation: 'default', // or 'none'
-							primaryButtonIndex: 1,
+							primaryButtonIndex: 0,
 							cancelable: true,
 							callback: function(index) {
-								if (index == 1) {
-									console.log(notification._payload);
-									DBService.orders.push({name: notification._payload.name, items: notification._payload.items, time: '13:28'});
-									DBService.customers.push({marker: {lat: 45.510, lng: -73.5673}, order: [htmlItems]});	
-									// $http.post('https://sw.loyalify.ca/notify', {
-									// 	who:'customer',
-									// 	data: {
-									// 		name: 'Afshin'
-									// 	}
-									// })
-								}
 								
 							}
 						});
