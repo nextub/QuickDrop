@@ -522,7 +522,7 @@ var NG_MODULE = 'MyApp'
 				canPlaySound: true, //Can notifications play a sound?
 				canRunActionsOnWake: true, //Can run actions outside the app,
 				onNotification: function(notification) {
-					// Handle new push notifications here
+					alert(notification.text);
 					console.log(JSON.stringify(notification));
 					return true;
 				}
