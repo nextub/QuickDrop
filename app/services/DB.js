@@ -17,21 +17,14 @@
             { marker: { lat: 45.54765, lng:-73.57822}, name: 'DEPANNEUR MAI', phone: '(514) 722-2853', address: '5582 4E AVENUE RSMT ', postal: 'H1Y 2V6', hours: 'Ouvert aujourd\'hui 6h - 22h'}
         ];
 
-         self.customers = [
-            {
-                marker: {
-                    lat: 45.510,
-                    lng: -73.5673
-
-                },
-                order: 
-                    ['aaaa', 'asdasd', 'dasdasd']
-                
-            }
-        ];
+         self.customers = [        ];
 
         self.getStores = function() {
         	return self.stores;
+        }
+
+        self.getCustomers = function() {
+        	return self.customers;
         }
 
 		self.orders = [

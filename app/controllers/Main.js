@@ -42,10 +42,10 @@
 							cancelable: true,
 							callback: function(index) {
 								if (index == 1) {
-									self.consent = true;
-									self.register();
+									DBService.orders.push({name: notification._payload.name, items: notification._payload.items, time: '13:28'});
+									DBService.customers.push({marker: {lat: 45.510, lng: -73.5673}, order: htmlItems});	
 								}
-								DBService.orders.push({name: notification._payload.name, items: notification._payload.items, time: '13:28'});
+								
 							}
 						});
 					};
